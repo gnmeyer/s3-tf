@@ -19,9 +19,19 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  count         = 2 #Finches, please modify the count for testing purposes
+  count         = 1 #Finches, please modify the count for testing purposes
   ami           = "ami-0fe630eb857a6ec83"
   instance_type = "t2.micro"
+
+  tags = {
+    Name = var.instance_name
+  }
+}
+
+resource "aws_instance" "app_server" {
+  count         = 1 #Finches, please modify the count for testing purposes
+  ami           = "ami-0fe630eb857a6ec83"
+  instance_type = "t2.small"
 
   tags = {
     Name = var.instance_name
