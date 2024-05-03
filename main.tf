@@ -19,13 +19,9 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  count         = 1 #Finches, please modify the count for testing purposes
+  count         = 2 #Finches, please modify the count for testing purposes
   ami           = "ami-0fe630eb857a6ec83"
   instance_type = "t2.micro"
-
-  #vpc_security_group_ids = ["sg-0664e17c27dc38c48"]
-
-  #subnet_id = "subnet-019c03f7b62349192"
 
   tags = {
     Name = var.instance_name
