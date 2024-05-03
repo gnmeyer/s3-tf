@@ -28,7 +28,7 @@ resource "aws_instance" "app_server" {
   }
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "new_app_server" {
   count         = 1 #Finches, please modify the count for testing purposes
   ami           = "ami-0fe630eb857a6ec83"
   instance_type = "t2.small"
