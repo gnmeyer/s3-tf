@@ -1,7 +1,7 @@
 variable "vpc_name" {
   description = "Name of VPC"
   type        = string
-  default     = "bootcamp-vpc-grant"
+  default     = "bootcamp-vpc-grant-2"
 }
 
 variable "vpc_cidr" {
@@ -41,4 +41,10 @@ variable "vpc_tags" {
     Terraform   = "true"
     Environment = "sandbox"
   }
+}
+
+variable "instance_name" {
+  description = "Value of the Name tag for the EC2 instance"
+  type        = string
+  default     = "ExampleAppServerInstance"
 }
