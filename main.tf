@@ -18,25 +18,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "app_server" {
-  count         = 1 #Finches, please modify the count for testing purposes
-  ami           = "ami-0fe630eb857a6ec83"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = var.instance_name
-  }
-}
-
-resource "aws_instance" "new_app_server" {
-  count         = 1 #Finches, please modify the count for testing purposes
-  ami           = "ami-0fe630eb857a6ec83"
-  instance_type = "t2.small"
-
-  tags = {
-    Name = var.instance_name
-  }
-}
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -62,16 +43,21 @@ module "ec2_instance" {
   version = "5.6.1"
 
 
-  count = 1
-  name  = "my-ec2-cluster-${count.index}"
+  count = 2
+  name  = "grant-ec2-cluster-${count.index}"
 
-  ami                    = "ami-0c5204531f799e0c6"
+  ami                    = "ami-0fe630eb857a6ec83"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [module.vpc.default_security_group_id]
   subnet_id              = module.vpc.private_subnets[0]
 
   tags = {
-    Terraform   = "true"
-    Environment = "sandbox"
+    Name         = var.instance_name
+    Client       = "Internal"
+    Project      = "DOB"
+    Owner        = "Grant"
+    Applicaiton = "app_server"
+    Environment  = "test"
   }
 }
+
