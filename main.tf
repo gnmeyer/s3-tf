@@ -52,12 +52,12 @@ module "ec2_instance" {
   subnet_id              = module.vpc.private_subnets[0]
 
   tags = {
-    Name         = var.instance_name
-    Client       = "Internal"
-    Project      = "DOB"
-    Owner        = "Grant"
+    Name        = var.instance_name
+    Client      = "Internal"
+    Project     = "DOB"
+    Owner       = "Grant"
     Applicaiton = "app_server"
-    Environment  = "test"
+    Environment = "test"
   }
 }
 
